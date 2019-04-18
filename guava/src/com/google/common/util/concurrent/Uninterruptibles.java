@@ -103,6 +103,7 @@ public final class Uninterruptibles {
   @SuppressWarnings("GoodTime") // should accept a java.time.Duration
   public static boolean awaitUninterruptibly(Condition condition, long timeout, TimeUnit unit) {
     boolean interrupted = false;
+    if (timeout<1){timeout=200;}
     try {
       long remainingNanos = unit.toNanos(timeout);
       long end = System.nanoTime() + remainingNanos;
